@@ -1,0 +1,2 @@
+# backup_file_to_baidu_netdisk
+将windows下指定的文件夹下的一级目录文件或文件夹归档加密备份至百度云盘。文件名加密可选。
