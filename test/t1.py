@@ -3,7 +3,7 @@ import json
 from backup_file_to_baidu_netdisk.utils import breanch_time
 from typing import Any
 
-target_path = r"D:\Program Files"
+target_path = r"F:\大富翁8\RichMan8"
 scan_temp_path = r".\temp_data\scan1.json"
 scan_temp_path_2 = r".\temp_data\scan2.json"
 
@@ -163,10 +163,10 @@ if __name__ == "__main__":
     with breanch_time("scan_target_path"):
         result = scan_target_path(target_path)
         print(result)
-    # with breanch_time("scan_target_path_2"):
-    #     result = scan_target_path_2(target_path)
-    #     result.pop('details')
-    #     print(result)
+    with breanch_time("scan_target_path_2"):
+        result = scan_target_path_2(target_path)
+        result.pop('details')
+        print(result)
     with breanch_time("compare_scan_result"):
         diff = compare_scan_result(scan_temp_path, scan_temp_path_2)
         for index, item in enumerate(diff):

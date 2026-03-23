@@ -109,3 +109,10 @@ class BackupTasks(BaseModel):
     retry_count:Mapped[int] = mapped_column(Integer,comment="重试次数",default=0)
     max_retries:Mapped[int] = mapped_column(Integer,comment="最大重试次数",default=3)
     __table_args__ = (UniqueConstraint('object_id', name='uix_object_id'),)
+
+class ServiceStatusManager(BaseModel):
+    __tablename__ = "service_status_manager"
+    service_name:Mapped[str] = mapped_column(String(255),comment="服务名称")
+    service_status:Mapped[Literal['未启动','启动中','运行中','运行结束','运行异常终止','运行异常']] = mapped_column(String(20),comment="服务状态")
+    version:Mapped[int] = mapped_column(Integer,comment="版本号")
+    __table_args__ = (UniqueConstraint('service_name','version', name='uix_service_name_version'),)
