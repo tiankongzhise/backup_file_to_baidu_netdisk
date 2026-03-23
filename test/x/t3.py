@@ -1,4 +1,4 @@
-from backup_file_to_baidu_netdisk.controller.main import get_service_manager,register_service
+from backup_file_to_baidu_netdisk.controller import get_service_manager,register_service
 
 from test.t2 import TestService1
 from dataclasses import dataclass

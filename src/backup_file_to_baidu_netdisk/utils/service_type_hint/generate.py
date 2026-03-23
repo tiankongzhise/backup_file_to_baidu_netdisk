@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 from typing import  Optional, Type
-from backup_file_to_baidu_netdisk.controller.main import get_service_manager,S,D,R
+from backup_file_to_baidu_netdisk.controller import get_service_manager
 
 def generate_stubs(output_path: Optional[str] = None) -> None:
     """
@@ -51,7 +51,7 @@ def generate_stubs(output_path: Optional[str] = None) -> None:
             imports.append(f"from {module} import {', '.join(sorted(names))}")
 
     # 添加对 S, D, R 的泛型导入
-    imports.append(f"from ...dao.type_ import S, D, R")
+    imports.append(f"from ..type_ import S, D, R")
     
     imports.append("")  # 空行分隔
 

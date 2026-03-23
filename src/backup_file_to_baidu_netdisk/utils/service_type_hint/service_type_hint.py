@@ -1,5 +1,6 @@
 from typing import Type
-from backup_file_to_baidu_netdisk.controller.main import get_service_manager,S,D,R
+from backup_file_to_baidu_netdisk.controller import get_service_manager
+from ..type_ import S,D,R
 def get_service(service_name:str)->tuple[Type[S],Type[D],Type[R]]:
     service_manager = get_service_manager()
     service_context = service_manager.get_service(service_name)
