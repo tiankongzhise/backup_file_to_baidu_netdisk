@@ -16,16 +16,26 @@ class ObjectMetaData(BaseModel):
     object_name: Mapped[str] = mapped_column(String(255),comment="对象名称，文件名或文件夹名")
     local_path: Mapped[str] = mapped_column(String(255),comment="本地路径，完整路径")
     object_size: Mapped[int] = mapped_column(BigInteger,comment="对象大小，字节")
-    md5_hash: Mapped[str] = mapped_column(String(32),comment="MD5哈希，32位")
-    sha1_hash: Mapped[str] = mapped_column(String(40),comment="SHA1哈希，40位")
+    md5_hash: Mapped[str] = mapped_column(String(32),comment="MD5哈希，32位",nullable=True)
+    sha1_hash: Mapped[str] = mapped_column(String(40),comment="SHA1哈希，40位",nullable=True)
     process_stage: Mapped[int] = mapped_column(Integer,comment="处理阶段")
     process_status: Mapped[int] = mapped_column(Integer,comment="处理状态")
-    backup_status: Mapped[int] = mapped_column(Integer,comment="备份状态，0:未开始，1:备份中，2:备份成功，3:备份失败，4:备份取消，5:备份异常")
-    remote_path: Mapped[str] = mapped_column(String(255),comment="远程路径，百度云盘路径")
-    remote_etag: Mapped[str] = mapped_column(String(255),comment="百度云盘备份成功返回的md5,用于一致性检查")
-    encrypted_remote_name_path: Mapped[str] = mapped_column(String(255),comment="文件名加密后的远程路径，百度云盘路径")
-    encrypted_remote_etag: Mapped[str] = mapped_column(String(255),comment="文件名加密后的远程etag，百度云盘备份成功返回的md5,用于一致性检查")
+    backup_status: Mapped[int] = mapped_column(Integer,comment="备份状态，0:未开始，1:备份中，2:备份成功，3:备份失败，4:备份取消，5:备份异常",nullable=True)
+    remote_path: Mapped[str] = mapped_column(String(255),comment="远程路径，百度云盘路径",nullable=True)
+    remote_etag: Mapped[str] = mapped_column(String(255),comment="百度云盘备份成功返回的md5,用于一致性检查",nullable=True)
+    encrypted_remote_name_path: Mapped[str] = mapped_column(String(255),comment="文件名加密后的远程路径，百度云盘路径",nullable=True)
+    encrypted_remote_etag: Mapped[str] = mapped_column(String(255),comment="文件名加密后的远程etag，百度云盘备份成功返回的md5,用于一致性检查",nullable=True)
     __table_args__ = (UniqueConstraint('object_id', name='uix_object_id'),)
+
+class ObjectDetails(BaseModel):
+    __tablename__ = "object_details"
+    object_id: Mapped[int] = mapped_column(String(255),comment="关联object_meta_data的object_id")
+    object_name: Mapped[str] = mapped_column(String(255),comment="对象名称，文件名或文件夹名")
+    local_path: Mapped[str] = mapped_column(String(255),comment="本地路径，完整路径")
+    object_size: Mapped[int] = mapped_column(BigInteger,comment="对象大小，字节")
+    object_count: Mapped[dict] = mapped_column(JSON,comment="对象数量，文件夹数量,总对象数量")
+    details: Mapped[dict] = mapped_column(JSON,comment="对象详情,包括文件名、文件类型、路径、大小、修改时间、创建时间、访问时间、权限等，数据结构为list[dict]")
+
 
 class ProcessTask(BaseModel):
     __tablename__ = "process_task"
