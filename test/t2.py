@@ -13,7 +13,7 @@ class TestService1:
         self.a = 1
 
 
-TestService1 = register_service(TestDependency1,TestResult1)(TestService1)
+TestService1 = register_service(TestDependency1,TestResult1,2)(TestService1)
 
 if __name__ == "__main__":
     service_manager = get_service_manager()

@@ -10,7 +10,7 @@ class TestDependency(TypedDict):
 @dataclass
 class TestResult:
     ...
-@register_service(TestDependency,TestResult)
+@register_service(TestDependency,TestResult,2)
 class TestService2():
     def __init__(self,dependency:TestDependency):
         self.dependency = dependency
