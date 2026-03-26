@@ -1,19 +1,22 @@
-class SyncService:
-    """同步引擎核心接口"""
+from ..domain import ServicePort
+from ..utils.type_ import ActionResult
+from .service_register import register_service
+from typing import Any,Never
+from ..utils.wrap import class_method_action_result_wrapper
+@register_service(type[Never],dict,3)
+class BackupService(ServicePort):
+    @class_method_action_result_wrapper
+    def start(self)->ActionResult[Any]:
+        ...
     
-    async def start_sync(self, sync_root: str):
-        """启动同步（初始化监控+全量扫描）"""
-        pass
+    @class_method_action_result_wrapper
+    def stop(self)->ActionResult[Any]:
+        ...
     
-    async def pause_sync(self):
-        """暂停同步"""
-        pass
+    @class_method_action_result_wrapper
+    def pause(self)->ActionResult[Any]:
+        ...
     
-    async def force_sync(self, file_path: str):
-        """强制同步指定文件（用户手动触发）"""
-        pass
-    
-    async def get_sync_status(self) -> SyncStatus:
-        """获取同步状态（进度/队列/错误）"""
-        pass
-
+    @class_method_action_result_wrapper
+    def resume(self)->ActionResult[Any]:
+        ...

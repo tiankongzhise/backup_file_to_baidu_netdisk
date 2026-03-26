@@ -10,6 +10,7 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "sqlalchemy>=2.0.48",
+    "transitions>=0.9.3",
 ]
 [tool.hatch.build]
 # 指定包所在目录（默认会自动发现，但可显式声明）

@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 from typing import  Optional, Type
-from backup_file_to_baidu_netdisk.controller import get_service_manager
+from ...service import get_service_register_manager
 
 def generate_stubs(output_path: Optional[str] = None) -> None:
     """
@@ -9,7 +9,7 @@ def generate_stubs(output_path: Optional[str] = None) -> None:
     
     :param output_path: 输出的 .pyi 文件路径。若为 None，则自动生成与当前模块同名的 .pyi 文件。
     """
-    manager = get_service_manager()
+    manager = get_service_register_manager()
     services = manager.list_services()
 
     if not services:

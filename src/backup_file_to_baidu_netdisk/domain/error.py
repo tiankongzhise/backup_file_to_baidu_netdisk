@@ -1,0 +1,23 @@
+
+
+class ServiceError(Exception):
+    ...
+
+class ServiceRuntimeError(ServiceError):
+    ...
+
+class ServiceConfigurationError(ServiceError):
+    ...
+
+class ServiceDependencyError(ServiceError):
+    ...
+
+class ServiceNetworkError(ServiceError):
+    ...
+
+class ServiceDatabaseError(ServiceError):
+    ...
+
+class ServiceIOError(ServiceError):
+    ...
+
